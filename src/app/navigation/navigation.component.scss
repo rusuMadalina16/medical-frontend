@@ -5,21 +5,31 @@ body {
 }
 
 .header {
-  background-color: #f1f1f1;
-  padding: 30px;
+  //background-image: url("https://www.transess.com/wp-content/uploads/health-banner-4.jpg");
+  padding: 100px;
   text-align: center;
+  display: block;
+  position: relative;
 }
 
-.content {
-  padding: 16px;
+.header::after {
+  content: "";
+  background-image: url("https://www.medici-romania.ro/files/dr%208-1.jpg");
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
-}
-
-.sticky + .content {
-  padding-top: 60px;
 }
