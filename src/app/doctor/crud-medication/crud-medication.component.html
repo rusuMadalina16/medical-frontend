@@ -4,30 +4,31 @@
 
 <ng-template #template>  
   <div class="modal-header bg-info ">  
-    <h4 class="modal-title pull-left text-light">Modal</h4>  
+    <h4 class="modal-title pull-left text-light">Add details about the new medication.</h4>  
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
       <span aria-hidden="true">×</span>  
     </button>  
   </div>  
   <div class="modal-body">  
-    <h3>List of my upcomming articles in C# Corner</h3>  
-    <ul>  
-      <li>Use of Ngx-Bootstrap Modal in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Progres Bar in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Datepicker in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Timepicker in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Dropdown in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Sortable in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Collapse in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Carousel in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Typehead in Angular 8</li>  
-       
-    </ul>  
-    <h3>You can check my all C# Corner Articles <a href="https://www.c-sharpcorner.com/members/siddharth-gajbhiye">here</a></h3>  
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input [(ngModel)]="newCat.name" class="form-control" id="name" />
+        <small class="form-text text-muted">Very important! Please double check!</small>
+      </div>
+      <div class="form-group">
+        <label for="Dosage">Dosage</label>
+        <input  [(ngModel)]="newCat.dosage" class="form-control" id="Dosage"/>
+      </div>
+      <div class="form-group">
+        <label for="sideEffects">Side Effects</label>
+        <input [(ngModel)]="newCat.sideEffects" class="form-control" id="sideEffects" />
+      </div>
+
+      <button type="submit" class="btn btn-info" (click)="addMedication(newCat);">Submit</button>
+    </form>
   </div>  
-  <div class="modal-footer">  
-    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
-  </div>  
+
 </ng-template>  
 
 

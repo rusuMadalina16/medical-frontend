@@ -18,6 +18,7 @@ export class CrudMedicationComponent implements OnInit {
   itemsOnPage: number = 12;
   currentPosition: number = 0;
   numberOfPages: number = 0;
+  newCat: Medication = new Medication();
 
   modalRef: BsModalRef;
 
@@ -70,6 +71,25 @@ export class CrudMedicationComponent implements OnInit {
     else this.currentPosition -= this.itemsOnPage;
 
     this.populatePage();
+  }
+
+  addMedication(medication: Medication) {
+    console.log(medication);
+    this.doctorService.addMedication(medication).subscribe(
+      () => {
+        this.loadCategories();
+        this.modalRef.hide();
+        this.newCat = new Medication();
+      }
+    );
+  }
+
+  loadCategories(): void {
+    this.doctorService.getAllMedication().subscribe(
+      (res) => {
+        this.medications = res;
+      }
+    );
   }
 
 }

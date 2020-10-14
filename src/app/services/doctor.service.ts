@@ -18,4 +18,9 @@ export class DoctorService {
     let url: string = `${URLCONST}get-medications`;
     return this.httpClient.get<Medication[]>(url);
   }
+
+  addMedication(cat: Medication) : Observable<any>{
+    let url: string = `${URLCONST}add-medication/`;
+    return this.httpClient.post<any>(url, cat);
+  }
 }
