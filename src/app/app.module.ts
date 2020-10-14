@@ -11,12 +11,17 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LogInComponent } from './log-in/log-in.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { CrudMedicationComponent } from './doctor/crud-medication/crud-medication.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    LogInComponent
+    LogInComponent,
+    DoctorComponent,
+    CrudMedicationComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,8 @@ import { LogInComponent } from './log-in/log-in.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
