@@ -1,0 +1,71 @@
+<div class="btn-group btn-group-md mr-2" id="addbutton">
+  <button type="button" class="btn btn-secondary" (click)="openModalWithClass(template)">Add medication</button>
+</div>
+
+<ng-template #template>  
+  <div class="modal-header bg-info ">  
+    <h4 class="modal-title pull-left text-light">Modal</h4>  
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+      <span aria-hidden="true">×</span>  
+    </button>  
+  </div>  
+  <div class="modal-body">  
+    <h3>List of my upcomming articles in C# Corner</h3>  
+    <ul>  
+      <li>Use of Ngx-Bootstrap Modal in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Progres Bar in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Datepicker in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Timepicker in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Dropdown in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Sortable in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Collapse in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Carousel in Angular 8</li>  
+      <li>Use of Ngx-Bootstrap Typehead in Angular 8</li>  
+       
+    </ul>  
+    <h3>You can check my all C# Corner Articles <a href="https://www.c-sharpcorner.com/members/siddharth-gajbhiye">here</a></h3>  
+  </div>  
+  <div class="modal-footer">  
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
+  </div>  
+</ng-template>  
+
+
+<div id="medication">
+  <div class="row">
+    <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+      *ngFor="let medication of pageOfAnswers">
+      <div class="card-header bg-transparent border-info">{{medication.name}}</div>
+      <div class="card-body text-info">
+        <h5 class="card-title">{{medication.dosage}}</h5>
+        <p class="card-text">{{medication.sideEffects}}</p>
+      </div>
+      <div class="card-footer bg-transparent border-info">
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-md btn-block btn-info mb-2" id="delete" (click)="changePage(false)">
+              Delete
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-md btn-block btn-info" id="update" (click)="changePage(true)">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3 mt-3">
+      <button class="btn btn-lg btn-block btn-info" (click)="changePage(false)">
+        Previous
+      </button>
+    </div>
+    <div class="col-md-6 mb-3 mt-3">
+      <button class="btn btn-lg btn-block btn-info" (click)="changePage(true)">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

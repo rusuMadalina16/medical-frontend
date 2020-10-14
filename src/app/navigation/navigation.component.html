@@ -3,7 +3,7 @@
     <p>Scroll down to see the sticky effect.</p>
   </div>
   
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar">
+  <mdb-navbar *ngIf = "userType !== 'doctor'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar" >
 
     <mdb-navbar-brand><a class="navbar-brand" href="#">Medical</a></mdb-navbar-brand>
   
@@ -27,7 +27,50 @@
         </li>
 
         <li class="nav-item ">
-          <a class="nav-link waves-light" ><mdb-icon fas icon="sign-in-alt"></mdb-icon>Log in</a>
+          <a class="nav-link waves-light" (click)="btnClick();"><mdb-icon fas icon="sign-in-alt"></mdb-icon>Log in</a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link waves-light" ><mdb-icon fas icon="user-plus"></mdb-icon>Sign up</a>
+        </li>
+  
+      </ul>
+    </links>
+  
+  </mdb-navbar>
+
+
+  <mdb-navbar *ngIf = "userType == 'doctor'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar">
+
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Medical</a></mdb-navbar-brand>
+  
+    <links>
+  
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link waves-light" mdbWavesEffect>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCrudMed();">CRUD-Medication</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect>CRUD-Patients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect>CRUD-Caregivers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect>Medication Plan</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link waves-light" ><mdb-icon fas icon="envelope"></mdb-icon> Contact</a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link waves-light"><mdb-icon fas icon="sign-out-alt"></mdb-icon>Log out</a>
         </li>
 
         <li class="nav-item ">
