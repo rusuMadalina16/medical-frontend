@@ -39,4 +39,8 @@ export class NavigationComponent implements OnInit {
   btnClickCrudMed(): void{
     this.router.navigateByUrl("/doctor/crud-medication");
   }
+
+  btnClickCrudPat(): void{
+    this.router.navigateByUrl("/doctor/crud-patient");
+  }
 }

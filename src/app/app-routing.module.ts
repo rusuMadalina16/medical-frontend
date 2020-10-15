@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CrudMedicationComponent } from './doctor/crud-medication/crud-medication.component';
+import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { LogInComponent } from './log-in/log-in.component';
-import { NavigationComponent } from './navigation/navigation.component';
 
 const routes: Routes = [
   {
@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: "doctor/crud-medication",
     component: CrudMedicationComponent
+  },
+  {
+    path: "doctor/crud-patient",
+    component: CrudPatientComponent
   }
 
 ];
