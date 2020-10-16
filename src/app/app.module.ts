@@ -14,6 +14,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { CrudMedicationComponent } from './doctor/crud-medication/crud-medication.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     LogInComponent,
     DoctorComponent,
-    CrudMedicationComponent
+    CrudMedicationComponent,
+    CrudPatientComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

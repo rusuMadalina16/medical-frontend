@@ -2,33 +2,83 @@
   <button type="button" class="btn btn-secondary" (click)="openModalWithClass(template)">Add medication</button>
 </div>
 
+
+<!-- ADD MEDICATION -->
 <ng-template #template>  
   <div class="modal-header bg-info ">  
-    <h4 class="modal-title pull-left text-light">Modal</h4>  
+    <h4 class="modal-title pull-left text-light">Add details about the new medication.</h4>  
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
       <span aria-hidden="true">×</span>  
     </button>  
   </div>  
   <div class="modal-body">  
-    <h3>List of my upcomming articles in C# Corner</h3>  
-    <ul>  
-      <li>Use of Ngx-Bootstrap Modal in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Progres Bar in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Datepicker in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Timepicker in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Dropdown in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Sortable in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Collapse in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Carousel in Angular 8</li>  
-      <li>Use of Ngx-Bootstrap Typehead in Angular 8</li>  
-       
-    </ul>  
-    <h3>You can check my all C# Corner Articles <a href="https://www.c-sharpcorner.com/members/siddharth-gajbhiye">here</a></h3>  
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" id="name" [(ngModel)]="newCat.name" #it="ngModel" required/>
+        <small class="form-text text-muted">Very important! Please double check!</small>
+      </div>
+      <div class="form-group">
+        <label for="Dosage">Dosage</label>
+        <input class="form-control" id="Dosage" [(ngModel)]="newCat.dosage" #it="ngModel" required/>
+      </div>
+      <div class="form-group">
+        <label for="sideEffects">Side Effects</label>
+        <input class="form-control" id="sideEffects" [(ngModel)]="newCat.sideEffects" #it="ngModel" required/>
+      </div>
+
+      <button type="submit" class="btn btn-info" (click)="addMedication(newCat);">Submit</button>
+  
   </div>  
-  <div class="modal-footer">  
-    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
-  </div>  
+
 </ng-template>  
+
+<!-- EDIT EXISTING MEDICATION -->
+<ng-template #templateEdit>
+  <div class="modal-header bg-info">
+    <h4 class="modal-title pull-left text-light">Edit medication.</h4>  
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+      <span aria-hidden="true">×</span>  
+    </button> 
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input class="form-control" id="name" [(ngModel)]="editingCat.name" #it="ngModel" required/>
+      <small class="form-text text-muted">Very important! Please double check!</small>
+    </div>
+    <div class="form-group">
+      <label for="Dosage">Dosage</label>
+      <input class="form-control" id="Dosage" [(ngModel)]="editingCat.dosage" #it="ngModel" required/>
+    </div>
+    <div class="form-group">
+      <label for="sideEffects">Side Effects</label>
+      <input class="form-control" id="sideEffects" [(ngModel)]="editingCat.sideEffects" #it="ngModel" required/>
+    </div>
+
+    <button type="submit" class="btn btn-info" (click)="updateMedication(editingCat);">Submit</button>
+  </div>
+</ng-template>
+
+<!-- Delete Medication -->
+<ng-template #templateDelete>
+  <div class="modal-header bg-info">
+    <h4 class="modal-title pull-left text-light">Delete medication.</h4>  
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+      <span aria-hidden="true">×</span>  
+    </button> 
+  </div>
+  <div class="modal-body">
+    <label for="categoryName">Delete medication "{{deleteCat.name}}"? </label>
+    <br>
+    <button class="btn m-05 ml-3 mb-3 text-light" id="delete" (click)="deleteMedication(deleteCat)">
+      Yes, Delete
+    </button>
+    <button class="btn m-05 ml-3 mb-3 text-light" id="update" (click)="modalRef.hide()">
+      Cancel
+    </button>
+  </div>
+</ng-template>
 
 
 <div id="medication">
@@ -43,12 +93,12 @@
       <div class="card-footer bg-transparent border-info">
         <div class="row">
           <div class="col-md-6">
-            <button class="btn btn-md btn-block btn-info mb-2" id="delete" (click)="changePage(false)">
+            <button class="btn btn-md btn-block btn-info mb-2" id="delete" (click)="openModalDelete(templateDelete, medication)">
               Delete
             </button>
           </div>
           <div class="col-md-6">
-            <button class="btn btn-md btn-block btn-info" id="update" (click)="changePage(true)">
+            <button class="btn btn-md btn-block btn-info" id="update" (click)="openModalEdit(templateEdit, medication)">
               Update
             </button>
           </div>
