@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Patient } from 'src/app/models/patient';
 import { DoctorService } from 'src/app/services/doctor.service';
-import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-crud-patient',
@@ -13,6 +12,8 @@ import {MatIconModule} from '@angular/material/icon';
 export class CrudPatientComponent implements OnInit {
 
   patients: Patient[];
+
+  genders: string[] = ["Female","Male","Other"];
 
   editingCat: Patient;
   deleteCat: Patient;
@@ -119,7 +120,7 @@ export class CrudPatientComponent implements OnInit {
   }
 
   deletePatient(patient: Patient) {
-    this.doctorService.deleteMedication(patient.id).subscribe(
+    this.doctorService.deletePatient(patient.id).subscribe(
       () => {
         this.getPatients();
         this.modalRef.hide();

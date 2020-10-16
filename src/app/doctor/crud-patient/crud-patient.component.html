@@ -19,25 +19,38 @@
           <small class="form-text text-muted">Very important! Please double check!</small>
         </div>
         
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <div class="form-group">
+            <label for="dateOfBirth">Date of birth</label>
+            <input class="form-control" id="dateOfBirth" [(ngModel)]="newCat.birthDate" #it="ngModel" required/>
+        </div>
 
         <div class="form-group">
-          <label for="sideEffects">Side Effects</label>
-          <input class="form-control" id="sideEffects" [(ngModel)]="newCat.sideEffects" #it="ngModel" required/>
+            <label for="gender">Gender</label>
+              <select class="form-control" [(ngModel)]="newCat.gender" #it="ngModel" required name="gender">
+                <option *ngFor="let g of genders; index as i" value="{{ g }}">{{ g }}</option>
+              </select>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input class="form-control" id="address" [(ngModel)]="newCat.address" #it="ngModel" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="medicalRecord">Medical Record</label>
+          <input class="form-control" id="medicalRecord" [(ngModel)]="newCat.medicalRecord" #it="ngModel" required/>
         </div>
   
-        <button type="submit" class="btn btn-info" (click)="addMedication(newCat);">Submit</button>
+        <button type="submit" class="btn btn-info" (click)="addPatient(newCat);">Submit</button>
     
     </div>  
   
   </ng-template>  
   
-  <!-- EDIT EXISTING MEDICATION
+   <!-- EDIT EXISTING PATIENT -->
   <ng-template #templateEdit>
     <div class="modal-header bg-info">
-      <h4 class="modal-title pull-left text-light">Edit medication.</h4>  
+      <h4 class="modal-title pull-left text-light">Edit Patient.</h4>  
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
         <span aria-hidden="true">×</span>  
       </button> 
@@ -48,58 +61,74 @@
         <input class="form-control" id="name" [(ngModel)]="editingCat.name" #it="ngModel" required/>
         <small class="form-text text-muted">Very important! Please double check!</small>
       </div>
+      
       <div class="form-group">
-        <label for="Dosage">Dosage</label>
-        <input class="form-control" id="Dosage" [(ngModel)]="editingCat.dosage" #it="ngModel" required/>
+          <label for="dateOfBirth">Date of birth</label>
+          <input class="form-control" id="dateOfBirth" [(ngModel)]="editingCat.birthDate" #it="ngModel" required/>
       </div>
+
       <div class="form-group">
-        <label for="sideEffects">Side Effects</label>
-        <input class="form-control" id="sideEffects" [(ngModel)]="editingCat.sideEffects" #it="ngModel" required/>
+          <label for="gender">Gender</label>
+            <select class="form-control" [(ngModel)]="editingCat.gender" #it="ngModel" required name="gender">
+              <option *ngFor="let g of genders; index as i" value="{{ g }}">{{ g }}</option>
+            </select>
       </div>
-  
-      <button type="submit" class="btn btn-info" (click)="updateMedication(editingCat);">Submit</button>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input class="form-control" id="address" [(ngModel)]="editingCat.address" #it="ngModel" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="medicalRecord">Medical Record</label>
+        <input class="form-control" id="medicalRecord" [(ngModel)]="editingCat.medicalRecord" #it="ngModel" required/>
+      </div>
+
+      <button type="submit" class="btn btn-info" (click)="updatePatient(editingCat);">Submit</button>
     </div>
   </ng-template>
   
-   Delete Medication 
+  <!-- Delete Medication  -->
   <ng-template #templateDelete>
     <div class="modal-header bg-info">
-      <h4 class="modal-title pull-left text-light">Delete medication.</h4>  
+      <h4 class="modal-title pull-left text-light">Delete patient.</h4>  
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
         <span aria-hidden="true">×</span>  
       </button> 
     </div>
     <div class="modal-body">
-      <label for="categoryName">Delete medication "{{deleteCat.name}}"? </label>
+      <label for="categoryName">Delete patient "{{deleteCat.name}}"? </label>
       <br>
-      <button class="btn m-05 ml-3 mb-3 text-light" id="delete" (click)="deleteMedication(deleteCat)">
+      <button class="btn m-05 ml-3 mb-3 text-light" id="delete" (click)="deletePatient(deleteCat)">
         Yes, Delete
       </button>
       <button class="btn m-05 ml-3 mb-3 text-light" id="update" (click)="modalRef.hide()">
         Cancel
       </button>
     </div>
-  </ng-template> -->
+  </ng-template>
   
   
   <div id="medication">
     <div class="row">
       <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
-        *ngFor="let medication of pageOfAnswers">
-        <div class="card-header bg-transparent border-info">{{medication.name}}</div>
+        *ngFor="let patient of patients">
+        <div class="card-header bg-transparent border-info">{{patient.name}}</div>
         <div class="card-body text-info">
-          <h5 class="card-title">{{medication.dosage}}</h5>
-          <p class="card-text">{{medication.sideEffects}}</p>
+          <h5 class="card-title">{{patient.medicalRecord}}</h5>
+          <p class="card-text">{{patient.birthDate}}</p>
+          <p class="card-text">{{patient.gender}}</p>
+          <p class="card-text">{{patient.address}}</p>
         </div>
         <div class="card-footer bg-transparent border-info">
           <div class="row">
             <div class="col-md-6">
-              <button class="btn btn-md btn-block btn-info mb-2" id="delete">
+              <button class="btn btn-md btn-block btn-info mb-2" id="delete"  (click)="openModalDelete(templateDelete, patient)">
                 Delete
               </button>
             </div>
             <div class="col-md-6">
-              <button class="btn btn-md btn-block btn-info" id="update">
+              <button class="btn btn-md btn-block btn-info" id="update" (click)="openModalEdit(templateEdit, patient)">
                 Update
               </button>
             </div>
