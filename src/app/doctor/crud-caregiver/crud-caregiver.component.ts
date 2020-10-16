@@ -1,74 +1,73 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Patient } from 'src/app/models/patient';
+import { Caregiver } from 'src/app/models/caregiver';
 import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
-  selector: 'app-crud-patient',
-  templateUrl: './crud-patient.component.html',
-  styleUrls: ['./crud-patient.component.scss']
+  selector: 'app-crud-caregiver',
+  templateUrl: './crud-caregiver.component.html',
+  styleUrls: ['./crud-caregiver.component.scss']
 })
-export class CrudPatientComponent implements OnInit {
+export class CrudCaregiverComponent implements OnInit {
 
-  patients: Patient[];
+  caregivers: Caregiver[];
 
   genders: string[] = ["Female","Male","Other"];
 
-  editingCat: Patient;
-  deleteCat: Patient;
+  editingCat: Caregiver;
+  deleteCat: Caregiver;
 
-  pageOfAnswers: Patient[];
+  pageOfAnswers: Caregiver[];
   itemsOnPage: number = 12;
   currentPosition: number = 0;
   numberOfPages: number = 0;
-  newCat: Patient = new Patient();
+  newCat: Caregiver = new Caregiver();
 
   modalRef: BsModalRef;
 
-  constructor(private doctorService: DoctorService,
+  constructor(
+    private doctorService: DoctorService,
     private router: Router,
     private modalService: BsModalService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.getPatients();
+    this.getCaregivers();
     this.newCat.id = '';
     this.newCat.name = '';
     this.newCat.birthDate = '';
     this.newCat.gender = '';
     this.newCat.address = '';
-    this.newCat.medicalRecord = '';
   }
 
   openModalWithClass(template: TemplateRef<any>) {  
     this.modalRef = this.modalService.show(template);  
   }
 
-  openModalEdit(template: TemplateRef<any>, cat: Patient) {
+  openModalEdit(template: TemplateRef<any>, cat: Caregiver) {
 
     this.editingCat = {
       id: cat.id,
       name: cat.name,
       birthDate: cat.birthDate,
       gender: cat.gender,
-      address: cat.address,
-      medicalRecord: cat.medicalRecord
+      address: cat.address
     };
     this.modalRef = this.modalService.show(template);
   }
 
-  openModalDelete(template: TemplateRef<any>, cat: Patient) {
+  openModalDelete(template: TemplateRef<any>, cat: Caregiver) {
     this.deleteCat = cat;
     this.modalRef = this.modalService.show(template);
   }
 
-  getPatients(): void {
-    this.doctorService.getAllPatients().subscribe(
+  getCaregivers(): void {
+    this.doctorService.getAllCarevigers().subscribe(
       (res) => {
-        this.patients = res;
+        this.caregivers = res;
           this.numberOfPages = Math.ceil(
-            this.patients.length / this.itemsOnPage
+            this.caregivers.length / this.itemsOnPage
           );
           this.populatePage();
       }
@@ -76,7 +75,7 @@ export class CrudPatientComponent implements OnInit {
   }
 
   populatePage() {
-    this.pageOfAnswers = this.patients.slice(
+    this.pageOfAnswers = this.caregivers.slice(
       this.currentPosition,
       this.currentPosition + this.itemsOnPage
     );
@@ -89,7 +88,7 @@ export class CrudPatientComponent implements OnInit {
         (this.currentPosition + this.itemsOnPage) / this.itemsOnPage ==
           this.numberOfPages)
     ) {
-      this.router.navigateByUrl('doctor/crud-patient');
+      this.router.navigateByUrl('doctor/crud-caregiver');
       return;
     }
 
@@ -99,33 +98,32 @@ export class CrudPatientComponent implements OnInit {
     this.populatePage();
   }
 
-  addPatient(patient: Patient) {
-    console.log(patient);
-    this.doctorService.addPatient(patient).subscribe(
+  addCaregiver(caregiver: Caregiver) {
+    console.log(caregiver);
+    this.doctorService.addCaregiver(caregiver).subscribe(
       () => {
-        this.getPatients();
+        this.getCaregivers();
         this.modalRef.hide();
-        this.newCat = new Patient();
+        this.newCat = new Caregiver();
       }
     );
   }
 
-  updatePatient(patient: Patient) {
-      this.doctorService.updatePatient(patient).subscribe(
+  updateCaregiver(caregiver: Caregiver) {
+      this.doctorService.updateCaregiver(caregiver).subscribe(
         () => {
-          this.getPatients();
+          this.getCaregivers();
         }
       );
-      this.getPatients();
+      this.getCaregivers();
   }
 
-  deletePatient(patient: Patient) {
-    this.doctorService.deletePatient(patient.id).subscribe(
+  deleteCaregiver(caregiver: Caregiver) {
+    this.doctorService.deleteCaregiver(caregiver.id).subscribe(
       () => {
-        this.getPatients();
+        this.getCaregivers();
         this.modalRef.hide();
       }
     );
   }
-
 }

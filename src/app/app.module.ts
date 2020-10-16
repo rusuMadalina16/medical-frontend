@@ -16,6 +16,7 @@ import { CrudMedicationComponent } from './doctor/crud-medication/crud-medicatio
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
+import { CrudCaregiverComponent } from './doctor/crud-caregiver/crud-caregiver.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.compone
     LogInComponent,
     DoctorComponent,
     CrudMedicationComponent,
-    CrudPatientComponent
+    CrudPatientComponent,
+    CrudCaregiverComponent
   ],
   imports: [
     BrowserModule,

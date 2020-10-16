@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CrudCaregiverComponent } from './doctor/crud-caregiver/crud-caregiver.component';
 import { CrudMedicationComponent } from './doctor/crud-medication/crud-medication.component';
 import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "doctor/crud-patient",
     component: CrudPatientComponent
+  },
+  {
+    path: "doctor/crud-caregiver",
+    component: CrudCaregiverComponent
   }
 
 ];
