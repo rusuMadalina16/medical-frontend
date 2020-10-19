@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Caregiver } from '../models/caregiver';
+import { Doctor } from '../models/doctor';
 import { Medication } from '../models/medication';
 import { Patient } from '../models/patient';
 
@@ -58,6 +59,11 @@ export class DoctorService {
     return this.httpClient.delete<any>(url);
   }
 
+  getPatientById(id: String): Observable<any> {
+    let url: string = `${URLCONST}get-patient/${id}`;
+    return this.httpClient.get<Patient>(url);
+  }
+
   //CAREGIVERS
   getAllCarevigers(): Observable<any> {
     let url: string = `${URLCONST}get-caregivers`;
@@ -77,5 +83,17 @@ export class DoctorService {
   deleteCaregiver(id: String): Observable<any>{
     let url: string = `${URLCONST}delete-caregiver/${id}`;
     return this.httpClient.delete<any>(url);
+  }
+
+  getCaregiverById(id: String): Observable<any> {
+    let url: string = `${URLCONST}get-caregiver/${id}`;
+    return this.httpClient.get<Caregiver>(url);
+  }
+
+
+  //DOCTOR
+  getDoctorById(id: String): Observable<any> {
+    let url: string = `${URLCONST}get-doctor/${id}`;
+    return this.httpClient.get<Doctor>(url);
   }
 }
