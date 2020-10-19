@@ -11,25 +11,27 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
 
   userType:string = "none";
+  location: string;
 
-  constructor(private location: Location,
-    private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.checkDoc();
   }
 
   checkDoc(): void{
-    if (this.location.path().includes("doctor")){
-      this.userType="doctor";
+    this.router.events.subscribe((params) => {
+      sessionStorage.setItem("navBar",sessionStorage.getItem("role"));
+      this.userType = sessionStorage.getItem("navBar");
+    })
+    this.userType = sessionStorage.getItem("navBar");
+    if(sessionStorage.getItem("navBar") == "null"){
+      this.router.navigateByUrl("");
     }
-    if(this.location.path().includes("patient"))
-    this.userType="patient";
 
-    console.log(this.userType.includes("doctor"));
-    console.log(this.userType.includes("patient"));
+    this.location=this.router.url;
+
     console.log(this.userType);
-    console.log(this.location.path());
   }
 
   btnClick(): void{
@@ -45,5 +47,10 @@ export class NavigationComponent implements OnInit {
   }
   btnClickCrudCar(): void{
     this.router.navigateByUrl("/doctor/crud-caregiver");
+  }
+  
+  logout(): void {
+    sessionStorage.clear();
+    this.router.navigateByUrl("");
   }
 }

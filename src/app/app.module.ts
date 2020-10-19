@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
 import { CrudCaregiverComponent } from './doctor/crud-caregiver/crud-caregiver.component';
+import { MedicationPlanComponent } from './doctor/medication-plan/medication-plan.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CrudCaregiverComponent } from './doctor/crud-caregiver/crud-caregiver.c
     DoctorComponent,
     CrudMedicationComponent,
     CrudPatientComponent,
-    CrudCaregiverComponent
+    CrudCaregiverComponent,
+    MedicationPlanComponent
   ],
   imports: [
     BrowserModule,
