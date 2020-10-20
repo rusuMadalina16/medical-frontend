@@ -48,6 +48,9 @@ export class NavigationComponent implements OnInit {
   btnClickCrudCar(): void{
     this.router.navigateByUrl("/doctor/crud-caregiver");
   }
+  btnClickPlanMed(): void{
+    this.router.navigateByUrl("/doctor/plan-medication");
+  }
   
   logout(): void {
     sessionStorage.clear();
