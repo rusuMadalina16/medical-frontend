@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Medication } from 'src/app/models/medication';
@@ -14,6 +15,11 @@ import { DoctorService } from 'src/app/services/doctor.service';
 export class MedicationPlanComponent implements OnInit {
 
   firstInsert: boolean = true;
+  selectedFinalPatient: boolean = false;
+  modalRef: BsModalRef;
+
+  finalPatient: Patient;
+  finalListMeds: Medication[];
 
   myControl = new FormControl();
   myControl2 = new FormControl();
@@ -26,7 +32,8 @@ export class MedicationPlanComponent implements OnInit {
   filteredOptions: Observable<Medication[]>;
   filteredOptions2: Observable<string[]>;
 
-  constructor(private doctorService: DoctorService) { }
+  constructor(private doctorService: DoctorService,
+    private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getAllPatients();
@@ -107,4 +114,14 @@ export class MedicationPlanComponent implements OnInit {
       }
     );
   }
+
+  openModalWithClass(template: TemplateRef<any>) {  
+    this.modalRef = this.modalService.show(template);  
+  }
+
+  selectFinalPatient(patient: Patient): void{
+    this.finalPatient=patient;
+    this.selectedFinalPatient=true;
+  }
+
 }

@@ -13,3 +13,19 @@
   margin-top: 2%;
   margin-right: 9%;
 }
+
+#delete{
+  background-color: #D5ACA9;
+}
+
+.modal-body {
+  position: relative;
+  overflow-y: auto;
+  max-height: 400px;
+  max-width: 2000px;
+  padding: 15px;
+}
+
+.td{
+  width: 140px;
+}
