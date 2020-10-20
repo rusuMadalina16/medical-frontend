@@ -13,15 +13,17 @@ import { DoctorService } from 'src/app/services/doctor.service';
 })
 export class MedicationPlanComponent implements OnInit {
 
+  firstInsert: boolean = true;
+
   myControl = new FormControl();
   myControl2 = new FormControl();
   patients: Patient[];
   medications: Medication[];
-  selectedMed: string;
+  selectedMed: Medication;
   selectedPatient: string;
-  options: string[] = [];
+  options: Medication[] = [];
   options2: string[] = [];
-  filteredOptions: Observable<string[]>;
+  filteredOptions: Observable<Medication[]>;
   filteredOptions2: Observable<string[]>;
 
   constructor(private doctorService: DoctorService) { }
@@ -29,23 +31,30 @@ export class MedicationPlanComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPatients();
     this.getAllMeds();
-    this.selectedMed="";
+    this.selectedMed={
+      id: "",
+      name: "",
+      dosage: "",
+      sideEffects: ""
+    };
     this.selectedPatient="";
     this.filteredOptions2 = this.myControl2.valueChanges.pipe(
       startWith(''),
       map(value => this._filter2(value))
     );
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.options.slice())
+      );
 
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  private _filter(name: string): Medication[] {
+    const filterValue = name.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   private _filter2(value2: string): string[] {
@@ -70,9 +79,32 @@ export class MedicationPlanComponent implements OnInit {
       (res) => {
         this.medications=res;
         for (let i=0; i<this.medications.length;i++){
-          this.options.push(this.medications[i].name);
+          this.options.push(this.medications[i]);
         }
       }
-    )
+    );
+  }
+
+  selectPatient(): void{
+    this.doctorService.getPatientByName(this.selectedPatient).subscribe(
+      (res) =>{
+        this.patients=res;
+      }
+    );
+  }
+
+  selectMed(): void{
+    this.doctorService.getMedByName(this.selectedMed.name).subscribe(
+      (res) =>{
+        console.log(res);
+        if (this.firstInsert){
+          this.firstInsert=false;
+          this.medications = res;
+        }else{
+          this.medications.push(res[0]);
+        }
+        console.log(this.medications);
+      }
+    );
   }
 }

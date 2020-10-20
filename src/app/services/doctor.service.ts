@@ -38,6 +38,11 @@ export class DoctorService {
     return this.httpClient.delete<any>(url);
   }
 
+  getMedByName(name: string): Observable<any> {
+    let url: string = `${URLCONST}get-med/${name}`;
+    return this.httpClient.get<Medication[]>(url);
+  }
+
   //PATIENTS
   getAllPatients(): Observable<any> {
     let url: string = `${URLCONST}get-patients`;
@@ -62,6 +67,11 @@ export class DoctorService {
   getPatientById(id: String): Observable<any> {
     let url: string = `${URLCONST}get-patient/${id}`;
     return this.httpClient.get<Patient>(url);
+  }
+
+  getPatientByName(name: String): Observable<any> {
+    let url: string = `${URLCONST}ppatient/${name}`;
+    return this.httpClient.get<Patient[]>(url);
   }
 
   //CAREGIVERS

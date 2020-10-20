@@ -1,31 +1,71 @@
 <div class="row" id="selectt">
+    <div class="col-md-6 col-sm-12">
 
-    <div class="col-md-6 col-sm-6">
-        <form class="example-form" id="meds">
-            <mat-form-field class="example-full-width">
-                <input type="text" placeholder="Pick medication" aria-label="Number" matInput [formControl]="myControl"
-                    [matAutocomplete]="auto" [(ngModel)]="selectedMed">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{option}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-        </form>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form class="example-form2" id="patients">
+                    <mat-form-field class="example-full-width2">
+                        <input type="text" placeholder="Pick patient" aria-label="Number" matInput
+                            [formControl]="myControl2" [matAutocomplete]="auto1" [(ngModel)]="selectedPatient">
+                        <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+                            <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2">
+                                {{option2}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <button class="btn btn-info mb-2" id="selectPatient" (click)="selectPatient();">Select Patient</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+                *ngFor="let patient of patients">
+                <div class="card-header bg-transparent border-info">{{patient.name}}</div>
+                <div class="card-body text-info">
+                    <h5 class="card-title">{{patient.medicalRecord}}</h5>
+                    <p class="card-text">{{patient.birthDate}}</p>
+                    <p class="card-text">{{patient.gender}}</p>
+                    <p class="card-text">{{patient.address}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-6 col-sm-6">
-        <form class="example-form2" id="patients">
-            <mat-form-field class="example-full-width2">
-                <input type="text" placeholder="Pick patient" aria-label="Number" matInput [formControl]="myControl2"
-                    [matAutocomplete]="auto1" [(ngModel)]="selectedPatient">
-                <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
-                    <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2">
-                        {{option2}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-        </form>
-    </div>
+    <div class="col-md-6 col-sm-12">
 
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form class="example-form" id="meds">
+                    <mat-form-field class="example-full-width">
+                        <input type="text" placeholder="Pick medication" aria-label="Number" matInput
+                            [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="selectedMed.name">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <button class="btn btn-info mb-2" id="selectMed" (click)="selectMed();">Select Med</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+                *ngFor="let med of medications">
+                <div class="card-header bg-transparent border-info">{{med.name}}</div>
+                <div class="card-body text-info">
+                    <h5 class="card-title">{{med.dosage}}</h5>
+                    <p class="card-text">{{med.sideEffects}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
