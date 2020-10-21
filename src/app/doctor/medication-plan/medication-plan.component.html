@@ -71,13 +71,38 @@
         </div>
 
         <div class="row">
-            <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
-                *ngFor="let med of medications">
-                <div class="card-header bg-transparent border-info">{{med.name}}</div>
-                <div class="card-body text-info">
-                    <h5 class="card-title">{{med.dosage}}</h5>
-                    <p class="card-text">{{med.sideEffects}}</p>
-                </div>
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="thead bg-info text-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Medication Name</th>
+                        <th scope="col">Dosage from prospect</th>
+                        <th scope="col">Side Effects</th>
+                        <th scope="col">Start-date</th>
+                        <th scope="col">End-date</th>
+                        <th scope="col">Doctor dosage</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let plan of finalPlans;">
+                      <tr>
+                        <th scope="row">{{plan.idMedication}}</th>
+                        <td>{{plan.name}}</td>
+                        <td>{{plan.dosage}}</td>
+                        <td>{{plan.sideEffects}}</td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="plan.dataStart"/>
+                        </td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="plan.dataStop"/>
+                        </td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="plan.doctorDosage"/>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>
@@ -85,7 +110,7 @@
 
 <div class="row" id="selectt">
     <div class="col-md-12 col-sm-12">
-        <button class="btn btn-block btn-info mb-2" (click)="openModalWithClass(template);">Finished Selection</button>
+        <button class="btn btn-block btn-info mb-2" (click)="finish();openModalWithClass(template);" [disabled]="disableFinish()">Finished Selection</button>
     </div>
 </div>
 
@@ -101,71 +126,21 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input class="form-control" id="name" value="{{finalPatient.name}}" disabled />
-                </div>
-
-                <div class="form-group">
-                    <label for="dateOfBirth">Date of birth</label>
-                    <input class="form-control" id="dateOfBirth" value="{{finalPatient.birthDate}}" disabled />
-                </div>
-
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <input class="form-control" id="gender" value="{{finalPatient.gender}}" disabled />
-                </div>
-
-
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input class="form-control" id="address" value="{{finalPatient.address}}" disabled />
-                </div>
-
-                <div class="form-group">
-                    <label for="medicalRecord">Medical Record</label>
-                    <input class="form-control" id="medicalRecord" value="{{finalPatient.medicalRecord}}" disabled />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Medication Name</th>
-                        <th scope="col">Dosage from prospect</th>
-                        <th scope="col">Side Effects</th>
-                        <th scope="col">Start-date</th>
-                        <th scope="col">End-date</th>
-                        <th scope="col">Doctor dosage</th>
-                      </tr>
-                    </thead>
-                    <tbody *ngFor="let med of medications;let indexOfelement=index;">
-                      <tr>
-                        <th scope="row">{{med.id}}</th>
-                        <td>{{med.name}}</td>
-                        <td>{{med.dosage}}</td>
-                        <td>{{med.sideEffects}}</td>
-                        <td>
-                            <input class="form-control" id="dateOfBirth"/>
-                        </td>
-                        <td>
-                            <input class="form-control" id="dateOfBirth"/>
-                        </td>
-                        <td>
-                            <input class="form-control" id="dateOfBirth"/>
-                        </td>
-                      </tr>
-                      
-                    </tbody>
-                  </table>
+                <h4>Pacientul cu numele <b>{{finalPatient.name}}</b>, data nasterii <b>{{finalPatient.birthDate}}</b>,
+                    sexul <b>{{finalPatient.gender}}</b>, adresa <b>{{finalPatient.address}}</b> si istoricul medical <b>{{finalPatient.medicalRecord}}</b> 
+                    a primit urmatorul tratament:
+                </h4>
+                <h3 *ngFor="let plan of finalPlans;">
+                    Nume: <b>{{plan.name}}</b>, <br>
+                    Efecte adverse: <b>{{plan.sideEffects}}</b>,<br>
+                    Dosage de pe prospect: <b>{{plan.dosage}}</b>,<br>
+                    Dosage recomandat de medic: <b>{{plan.doctorDosage}}</b>,<br>
+                    Data de incepere: <b>{{plan.dataStart}}</b>,<br>
+                    Data de oprire: <b>{{plan.dataStop}}</b>
+                </h3> 
             </div>
         </div>
 
-
-        <button type="submit" class="btn btn-info">Submit</button>
     </div>
     </div>
 

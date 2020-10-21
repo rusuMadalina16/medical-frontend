@@ -39,6 +39,7 @@ export class CrudPatientComponent implements OnInit {
     this.newCat.gender = '';
     this.newCat.address = '';
     this.newCat.medicalRecord = '';
+    this.newCat.doctorId = sessionStorage.getItem('clientId');
   }
 
   openModalWithClass(template: TemplateRef<any>) {  
@@ -53,7 +54,8 @@ export class CrudPatientComponent implements OnInit {
       birthDate: cat.birthDate,
       gender: cat.gender,
       address: cat.address,
-      medicalRecord: cat.medicalRecord
+      medicalRecord: cat.medicalRecord,
+      doctorId: sessionStorage.getItem('clientId')
     };
     this.modalRef = this.modalService.show(template);
   }
@@ -106,6 +108,7 @@ export class CrudPatientComponent implements OnInit {
         this.getPatients();
         this.modalRef.hide();
         this.newCat = new Patient();
+        this.newCat.doctorId = sessionStorage.getItem('clientId');
       }
     );
   }

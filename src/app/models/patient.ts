@@ -5,4 +5,5 @@ export class Patient{
     gender: string;
     address: string;
     medicalRecord: string;
+    doctorId: string;
 }

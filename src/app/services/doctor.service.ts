@@ -5,6 +5,7 @@ import { Caregiver } from '../models/caregiver';
 import { Doctor } from '../models/doctor';
 import { Medication } from '../models/medication';
 import { Patient } from '../models/patient';
+import { Plan } from '../models/plan';
 
 const URLCONST: string = "http://localhost:8080/doctor/";
 
@@ -105,5 +106,11 @@ export class DoctorService {
   getDoctorById(id: String): Observable<any> {
     let url: string = `${URLCONST}get-doctor/${id}`;
     return this.httpClient.get<Doctor>(url);
+  }
+
+  //PLAN
+  addPlan(plan: Plan) : Observable<any>{
+    let url: string = `${URLCONST}add-plan`;
+    return this.httpClient.post<any>(url, plan);
   }
 }
