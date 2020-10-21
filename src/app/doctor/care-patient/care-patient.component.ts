@@ -140,7 +140,19 @@ export class CarePatientComponent implements OnInit {
       medicalRecord: this.finalPatient.medicalRecord,
       doctorId: sessionStorage.getItem('clientId'),
       caregiverId: this.finalCaregiver.id
-    }
+    };
+    this.getAllPatients();
+    this.getAllCaregivers();
+    this.selectedFinalCaregiver=false;
+    this.selectedFinalPatient=false;
+    this.selectedCare={
+      id: "",
+      name: "",
+      birthDate: "",
+      gender: "",
+      address: ""
+    };
+    this.selectedPatient="";
     this.doctorService.updatePatientCaregiver(this.p).subscribe(
       (res) => {
         console.log("Good job!!!");

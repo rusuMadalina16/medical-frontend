@@ -168,10 +168,21 @@ export class MedicationPlanComponent implements OnInit {
       this.doctorService.addPlan(this.pp).subscribe(
         (res) =>{
           console.log("Good Job!!!");
+          this.getAllPatients();
+          this.getAllMeds();
+          this.selectedMed={
+            id: "",
+            name: "",
+            dosage: "",
+            sideEffects: ""
+          };
+          this.selectedPatient="";
+          this.selectedFinalPatient=false;
         }
       );
 
     }
+
   }
 
   disableFinish(): boolean {
