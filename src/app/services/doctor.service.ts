@@ -6,6 +6,7 @@ import { Doctor } from '../models/doctor';
 import { Medication } from '../models/medication';
 import { Patient } from '../models/patient';
 import { Plan } from '../models/plan';
+import { PatientAux } from '../models/patientaux';
 
 const URLCONST: string = "http://localhost:8080/doctor/";
 
@@ -75,6 +76,11 @@ export class DoctorService {
     return this.httpClient.get<Patient[]>(url);
   }
 
+  updatePatientCaregiver(cat: PatientAux): Observable<any>{
+    let url: string = `${URLCONST}update-patient-caregiver`;
+    return this.httpClient.put<any>(url, cat);
+  }
+
   //CAREGIVERS
   getAllCarevigers(): Observable<any> {
     let url: string = `${URLCONST}get-caregivers`;
@@ -101,6 +107,10 @@ export class DoctorService {
     return this.httpClient.get<Caregiver>(url);
   }
 
+  getCaregiverByName(name: String): Observable<any> {
+    let url: string = `${URLCONST}ccare/${name}`;
+    return this.httpClient.get<Caregiver[]>(url);
+  }
 
   //DOCTOR
   getDoctorById(id: String): Observable<any> {

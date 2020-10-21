@@ -1,0 +1,135 @@
+<div class="row" id="selectt">
+    <div class="col-md-6 col-sm-12">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form class="example-form2" id="patients">
+                    <mat-form-field class="example-full-width2">
+                        <input type="text" placeholder="Pick patient" aria-label="Number" matInput
+                            [formControl]="myControl2" [matAutocomplete]="auto1" [(ngModel)]="selectedPatient">
+                        <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+                            <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2">
+                                {{option2}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <button class="btn btn-info mb-2" id="selectPatient" (click)="selectPatient();">Select Patient</button>
+            </div>
+        </div>
+
+        <small class="form-text text-muted">Select after searching patient by name!</small>
+
+        <div class="row">
+            <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+                *ngFor="let patient of patients">
+                <div class="card-header bg-transparent border-info">{{patient.name}}</div>
+                <div class="card-body text-info">
+                    <h5 class="card-title">{{patient.medicalRecord}}</h5>
+                    <p class="card-text">{{patient.birthDate}}</p>
+                    <p class="card-text">{{patient.gender}}</p>
+                    <p class="card-text">{{patient.address}}</p>
+                </div>
+                <div class="card-footer bg-transparent border-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-md btn-block btn-info mb-2" id="delete"
+                                (click)="selectFinalPatient(patient);">
+                                Select this patient
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.selectedFinalPatient == true"> The patient was selected!</div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+    
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form class="example-form" id="meds">
+                    <mat-form-field class="example-full-width">
+                        <input type="text" placeholder="Pick caregiver" aria-label="Number" matInput
+                            [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="selectedCare.name">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+    
+            <div class="col-md-6 col-sm-12">
+                <button class="btn btn-info mb-2" id="selectCare" (click)="selectCaregiver();">Select Caregiver</button>
+            </div>
+        </div>
+
+        <small class="form-text text-muted">Select after searching caregiver by name!</small>
+    
+        <div class="row">
+            <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+                *ngFor="let care of caregivers">
+                <div class="card-header bg-transparent border-info">{{care.name}}</div>
+                <div class="card-body text-info">
+                    <p class="card-text">{{care.birthDate}}</p>
+                    <p class="card-text">{{care.gender}}</p>
+                    <p class="card-text">{{care.address}}</p>
+                </div>
+                <div class="card-footer bg-transparent border-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-md btn-block btn-info mb-2" id="delete"
+                                (click)="selectFinalCaregiver(care);">
+                                Select this caregiver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div *ngIf="this.selectedFinalCaregiver == true"> The caregiver was selected!</div>
+    </div>
+</div>
+
+<div class="row" id="selectt">
+    <div class="col-md-12 col-sm-12">
+        <button class="btn btn-block btn-info mb-2" (click)="finish();openModalWithClass(template);" [disabled]="disableFinish()">Finished Selection</button>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-xl">
+    <div class="modal-header bg-info">
+        <h4 class="modal-title pull-left text-light">Finish planning for medication.</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Pacientul cu numele <b>{{finalPatient.name}}</b>, data nasterii <b>{{finalPatient.birthDate}}</b>,
+                    sexul <b>{{finalPatient.gender}}</b>, adresa <b>{{finalPatient.address}}</b> si istoricul medical <b>{{finalPatient.medicalRecord}}</b> 
+                    a primit urmatorul ingrijitor:
+                </h4>
+                <h3>
+                    Nume: <b>{{finalCaregiver.name}}</b>, <br>
+                    Data de nastere: <b>{{finalCaregiver.birthDate}}</b>,<br>
+                    Sex: <b>{{finalCaregiver.gender}}</b>,<br>
+                    Adresa: <b>{{finalCaregiver.address}}</b>,<br>
+                </h3> 
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+</ng-template>

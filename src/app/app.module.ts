@@ -20,6 +20,7 @@ import { CrudCaregiverComponent } from './doctor/crud-caregiver/crud-caregiver.c
 import { MedicationPlanComponent } from './doctor/medication-plan/medication-plan.component';
 
 import { MaterialModule } from './material.module';
+import { CarePatientComponent } from './doctor/care-patient/care-patient.component';
 
 
 
@@ -32,7 +33,8 @@ import { MaterialModule } from './material.module';
     CrudMedicationComponent,
     CrudPatientComponent,
     CrudCaregiverComponent,
-    MedicationPlanComponent
+    MedicationPlanComponent,
+    CarePatientComponent
   ],
   imports: [
     BrowserModule,
