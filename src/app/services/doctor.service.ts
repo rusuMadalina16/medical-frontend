@@ -48,7 +48,7 @@ export class DoctorService {
   //PATIENTS
   getAllPatients(): Observable<any> {
     let url: string = `${URLCONST}get-patients`;
-    return this.httpClient.get<Patient[]>(url);
+    return this.httpClient.get<PatientAux[]>(url);
   }
 
   addPatient(cat: Patient) : Observable<any>{
@@ -56,7 +56,7 @@ export class DoctorService {
     return this.httpClient.post<any>(url, cat);
   }
 
-  updatePatient(cat: Patient): Observable<any>{
+  updatePatient(cat: PatientAux): Observable<any>{
     let url: string = `${URLCONST}update-patient`;
     return this.httpClient.put<any>(url, cat);
   }

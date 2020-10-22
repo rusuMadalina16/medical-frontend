@@ -21,6 +21,7 @@ export class MedicationPlanComponent implements OnInit {
   modalRef: BsModalRef;
 
   finalPlans: PlanAux[] = [];
+  ffinalPPlans: PlanAux[];
   finalFinalPlans: Plan[]=[];
   p: PlanAux;
   pp: Plan;
@@ -81,9 +82,11 @@ export class MedicationPlanComponent implements OnInit {
     this.doctorService.getAllPatients().subscribe(
       (res) => {
         this.patients=res;
+        if (this.options2.length === 0){
         for (let i=0; i<this.patients.length;i++){
           this.options2.push(this.patients[i].name);
         }
+      }
       }
     )
   }
@@ -92,9 +95,11 @@ export class MedicationPlanComponent implements OnInit {
     this.doctorService.getAllMedication().subscribe(
       (res) => {
         this.medications=res;
+        if (this.options.length === 0){
         for (let i=0; i<this.medications.length;i++){
           this.options.push(this.medications[i]);
         }
+      }
       }
     );
   }
@@ -170,16 +175,22 @@ export class MedicationPlanComponent implements OnInit {
           console.log("Good Job!!!");
           this.getAllPatients();
           this.getAllMeds();
-          this.selectedMed={
-            id: "",
-            name: "",
-            dosage: "",
-            sideEffects: ""
-          };
-          this.selectedPatient="";
-          this.selectedFinalPatient=false;
         }
       );
+
+      this.selectedMed={
+        id: "",
+        name: "",
+        dosage: "",
+        sideEffects: ""
+      };
+      this.selectedPatient="";
+      this.selectedFinalPatient=false;
+      this.ffinalPPlans = [];
+      for (i = 0; i < this.finalPlans.length; i++) {
+        this.ffinalPPlans.push(this.finalPlans[i]);
+      }
+      this.finalPlans=[];
 
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Patient } from 'src/app/models/patient';
+import { PatientAux } from 'src/app/models/patientaux';
 import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
@@ -11,11 +12,11 @@ import { DoctorService } from 'src/app/services/doctor.service';
 })
 export class CrudPatientComponent implements OnInit {
 
-  patients: Patient[];
+  patients: PatientAux[];
 
   genders: string[] = ["Female","Male","Other"];
 
-  editingCat: Patient;
+  editingCat: PatientAux;
   deleteCat: Patient;
 
   pageOfAnswers: Patient[];
@@ -46,7 +47,7 @@ export class CrudPatientComponent implements OnInit {
     this.modalRef = this.modalService.show(template);  
   }
 
-  openModalEdit(template: TemplateRef<any>, cat: Patient) {
+  openModalEdit(template: TemplateRef<any>, cat: PatientAux) {
 
     this.editingCat = {
       id: cat.id,
@@ -55,7 +56,8 @@ export class CrudPatientComponent implements OnInit {
       gender: cat.gender,
       address: cat.address,
       medicalRecord: cat.medicalRecord,
-      doctorId: sessionStorage.getItem('clientId')
+      doctorId: sessionStorage.getItem('clientId'),
+      caregiverId: cat.caregiverId
     };
     this.modalRef = this.modalService.show(template);
   }
@@ -113,7 +115,7 @@ export class CrudPatientComponent implements OnInit {
     );
   }
 
-  updatePatient(patient: Patient) {
+  updatePatient(patient: PatientAux) {
       this.doctorService.updatePatient(patient).subscribe(
         () => {
           this.getPatients();
