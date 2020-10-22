@@ -3,9 +3,9 @@
     <p>Scroll down to see the sticky effect.</p>
   </div>
   
-  <mdb-navbar *ngIf = "userType !== 'doctor'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar" >
+  <mdb-navbar *ngIf = "userType !== 'DOCTOR'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar" >
 
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Medical</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand text-light" >Medical</a></mdb-navbar-brand>
   
     <links>
   
@@ -40,15 +40,15 @@
   </mdb-navbar>
 
 
-  <mdb-navbar *ngIf = "userType == 'doctor'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar">
+  <mdb-navbar *ngIf = "userType == 'DOCTOR'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar">
 
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Medical</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand text-light" (click)="btnClickCareHome();">Medical</a></mdb-navbar-brand>
   
     <links>
   
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link waves-light" mdbWavesEffect>Home</a>
+          <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCareHome();">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCrudMed();">CRUD-Medication</a>
@@ -57,10 +57,13 @@
           <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCrudPat();">CRUD-Patients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>CRUD-Caregivers</a>
+          <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCrudCar();">CRUD-Caregivers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Medication Plan</a>
+          <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickPlanMed();">Medication Plan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect  (click)="btnClickCarePat();">Associate caregiver to patient </a>
         </li>
       </ul>
 
@@ -70,11 +73,7 @@
         </li>
 
         <li class="nav-item ">
-          <a class="nav-link waves-light"><mdb-icon fas icon="sign-out-alt"></mdb-icon>Log out</a>
-        </li>
-
-        <li class="nav-item ">
-          <a class="nav-link waves-light" ><mdb-icon fas icon="user-plus"></mdb-icon>Sign up</a>
+          <a class="nav-link waves-light" (click)="logout();"><mdb-icon fas icon="sign-out-alt"></mdb-icon>Log out</a>
         </li>
   
       </ul>

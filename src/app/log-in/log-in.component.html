@@ -13,14 +13,14 @@
 					<div class="row">
 						<form control="" class="form-group">
 							<div class="row">
-								<input type="text" name="username" id="username" class="form__input" placeholder="Username">
+								<input type="text" name="username" id="username" class="form__input" placeholder="Username" [(ngModel)]="userLogIn.username">
 							</div>
 							<div class="row">
 								<!-- <span class="fa fa-lock"></span> -->
-								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
+								<input type="password" name="password" id="password" class="form__input" placeholder="Password" [(ngModel)]="userLogIn.password">
 							</div>
 							<div class="row">
-								<input type="submit" value="Submit" class="btn">
+								<input type="submit" value="Submit" class="btn" (click)="getUser();">
 							</div>
 						</form>
 					</div>

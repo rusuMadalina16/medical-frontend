@@ -1,0 +1,147 @@
+<div class="row" id="selectt">
+    <div class="col-md-6 col-sm-12">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form class="example-form2" id="patients">
+                    <mat-form-field class="example-full-width2">
+                        <input type="text" placeholder="Pick patient" aria-label="Number" matInput
+                            [formControl]="myControl2" [matAutocomplete]="auto1" [(ngModel)]="selectedPatient">
+                        <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+                            <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2">
+                                {{option2}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <button class="btn btn-info mb-2" id="selectPatient" (click)="selectPatient();">Select Patient</button>
+            </div>
+        </div>
+
+        <small class="form-text text-muted">Select after searching patient by name!</small>
+
+        <div class="row">
+            <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+                *ngFor="let patient of patients">
+                <div class="card-header bg-transparent border-info">{{patient.name}}</div>
+                <div class="card-body text-info">
+                    <h5 class="card-title">{{patient.medicalRecord}}</h5>
+                    <p class="card-text">{{patient.birthDate}}</p>
+                    <p class="card-text">{{patient.gender}}</p>
+                    <p class="card-text">{{patient.address}}</p>
+                </div>
+                <div class="card-footer bg-transparent border-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-md btn-block btn-info mb-2" id="delete"
+                                (click)="selectFinalPatient(patient);">
+                                Select this patient
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.selectedFinalPatient == true"> The patient was selected!</div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form class="example-form" id="meds">
+                    <mat-form-field class="example-full-width">
+                        <input type="text" placeholder="Pick medication" aria-label="Number" matInput
+                            [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="selectedMed.name">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <button class="btn btn-info mb-2" id="selectMed" (click)="selectMed();">Select Med</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="thead bg-info text-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Medication Name</th>
+                        <th scope="col">Dosage from prospect</th>
+                        <th scope="col">Side Effects</th>
+                        <th scope="col">Start-date</th>
+                        <th scope="col">End-date</th>
+                        <th scope="col">Doctor dosage</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let plan of finalPlans;">
+                      <tr>
+                        <th scope="row">{{plan.idMedication}}</th>
+                        <td>{{plan.name}}</td>
+                        <td>{{plan.dosage}}</td>
+                        <td>{{plan.sideEffects}}</td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="plan.dataStart"/>
+                        </td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="plan.dataStop"/>
+                        </td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="plan.doctorDosage"/>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="selectt">
+    <div class="col-md-12 col-sm-12">
+        <button class="btn btn-block btn-info mb-2" (click)="finish();openModalWithClass(template);" [disabled]="disableFinish()">Finished Selection</button>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-xl">
+    <div class="modal-header bg-info">
+        <h4 class="modal-title pull-left text-light">Finish planning for medication.</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Pacientul cu numele <b>{{finalPatient.name}}</b>, data nasterii <b>{{finalPatient.birthDate}}</b>,
+                    sexul <b>{{finalPatient.gender}}</b>, adresa <b>{{finalPatient.address}}</b> si istoricul medical <b>{{finalPatient.medicalRecord}}</b> 
+                    a primit urmatorul tratament:
+                </h4>
+                <h3 *ngFor="let pln of ffinalPPlans;">
+                    Nume: <b>{{pln.name}}</b>, <br>
+                    Efecte adverse: <b>{{pln.sideEffects}}</b>,<br>
+                    Dosage de pe prospect: <b>{{pln.dosage}}</b>,<br>
+                    Dosage recomandat de medic: <b>{{pln.doctorDosage}}</b>,<br>
+                    Data de incepere: <b>{{pln.dataStart}}</b>,<br>
+                    Data de oprire: <b>{{pln.dataStop}}</b>
+                </h3> 
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+</ng-template>

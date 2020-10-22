@@ -1,4 +1,4 @@
-export class Patient{
+export class PatientAux{
     id: string;
     name: string;
     birthDate: string;
@@ -6,4 +6,5 @@ export class Patient{
     address: string;
     medicalRecord: string;
     doctorId: string;
+    caregiverId: string;
 }

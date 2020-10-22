@@ -14,8 +14,14 @@ import { LogInComponent } from './log-in/log-in.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { CrudMedicationComponent } from './doctor/crud-medication/crud-medication.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
+import { CrudCaregiverComponent } from './doctor/crud-caregiver/crud-caregiver.component';
+import { MedicationPlanComponent } from './doctor/medication-plan/medication-plan.component';
+
+import { MaterialModule } from './material.module';
+import { CarePatientComponent } from './doctor/care-patient/care-patient.component';
+
 
 
 @NgModule({
@@ -25,7 +31,10 @@ import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.compone
     LogInComponent,
     DoctorComponent,
     CrudMedicationComponent,
-    CrudPatientComponent
+    CrudPatientComponent,
+    CrudCaregiverComponent,
+    MedicationPlanComponent,
+    CarePatientComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +45,9 @@ import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.compone
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,140 @@
+<div class="btn-group btn-group-md mr-2" id="addbutton">
+    <button type="button" class="btn btn-secondary" (click)="openModalWithClass(template)">Add Caregiver</button>
+  </div>
+  
+  
+  <!-- ADD CAREGIVER -->
+  <ng-template #template>  
+    <div class="modal-header bg-info ">  
+      <h4 class="modal-title pull-left text-light">Add details about the new caregiver.</h4>  
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+        <span aria-hidden="true">×</span>  
+      </button>  
+    </div>  
+    <div class="modal-body">  
+  
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input class="form-control" id="name" [(ngModel)]="newCat.name" #it="ngModel" required/>
+          <small class="form-text text-muted">Very important! Please double check!</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="dateOfBirth">Date of birth</label>
+            <input class="form-control" id="dateOfBirth" [(ngModel)]="newCat.birthDate" #it="ngModel" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+              <select class="form-control" [(ngModel)]="newCat.gender" #it="ngModel" required name="gender">
+                <option *ngFor="let g of genders; index as i" value="{{ g }}">{{ g }}</option>
+              </select>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input class="form-control" id="address" [(ngModel)]="newCat.address" #it="ngModel" required/>
+        </div>
+  
+        <button type="submit" class="btn btn-info" (click)="addCaregiver(newCat);">Submit</button>
+    
+    </div>  
+  
+  </ng-template>  
+  
+   <!-- EDIT EXISTING CAREGIVER -->
+  <ng-template #templateEdit>
+    <div class="modal-header bg-info">
+      <h4 class="modal-title pull-left text-light">Edit Caregiver.</h4>  
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+        <span aria-hidden="true">×</span>  
+      </button> 
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" id="name" [(ngModel)]="editingCat.name" #it="ngModel" required/>
+        <small class="form-text text-muted">Very important! Please double check!</small>
+      </div>
+      
+      <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <input class="form-control" id="dateOfBirth" [(ngModel)]="editingCat.birthDate" #it="ngModel" required/>
+      </div>
+
+      <div class="form-group">
+          <label for="gender">Gender</label>
+            <select class="form-control" [(ngModel)]="editingCat.gender" #it="ngModel" required name="gender">
+              <option *ngFor="let g of genders; index as i" value="{{ g }}">{{ g }}</option>
+            </select>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input class="form-control" id="address" [(ngModel)]="editingCat.address" #it="ngModel" required/>
+      </div>
+
+      <button type="submit" class="btn btn-info" (click)="updateCaregiver(editingCat);">Submit</button>
+    </div>
+  </ng-template>
+  
+  <!-- Delete Caregiver  -->
+  <ng-template #templateDelete>
+    <div class="modal-header bg-info">
+      <h4 class="modal-title pull-left text-light">Delete caregiver.</h4>  
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+        <span aria-hidden="true">×</span>  
+      </button> 
+    </div>
+    <div class="modal-body">
+      <label for="categoryName">Delete caregiver "{{deleteCat.name}}"? </label>
+      <br>
+      <button class="btn m-05 ml-3 mb-3 text-light" id="delete" (click)="deleteCaregiver(deleteCat)">
+        Yes, Delete
+      </button>
+      <button class="btn m-05 ml-3 mb-3 text-light" id="update" (click)="modalRef.hide()">
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+  
+  
+  <div id="medication">
+    <div class="row">
+      <div class="card border-info mb-3 ml-3 col-md-6 col-sm-12" style="max-width: 18rem;"
+        *ngFor="let caregiver of caregivers">
+        <div class="card-header bg-transparent border-info">{{caregiver.name}}</div>
+        <div class="card-body text-info">
+          <p class="card-text">{{caregiver.birthDate}}</p>
+          <p class="card-text">{{caregiver.gender}}</p>
+          <p class="card-text">{{caregiver.address}}</p>
+        </div>
+        <div class="card-footer bg-transparent border-info">
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-md btn-block btn-info mb-2" id="delete"  (click)="openModalDelete(templateDelete, caregiver)">
+                Delete
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-md btn-block btn-info" id="update" (click)="openModalEdit(templateEdit, caregiver)">
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3 mt-3">
+        <button class="btn btn-lg btn-block btn-info" (click)="changePage(false)">
+          Previous
+        </button>
+      </div>
+      <div class="col-md-6 mb-3 mt-3">
+        <button class="btn btn-lg btn-block btn-info" (click)="changePage(true)">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
