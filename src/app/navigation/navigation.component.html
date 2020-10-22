@@ -5,7 +5,7 @@
   
   <mdb-navbar *ngIf = "userType !== 'DOCTOR'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar" >
 
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Medical</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand text-light" >Medical</a></mdb-navbar-brand>
   
     <links>
   
@@ -42,13 +42,13 @@
 
   <mdb-navbar *ngIf = "userType == 'DOCTOR'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar">
 
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Medical</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand text-light" (click)="btnClickCareHome();">Medical</a></mdb-navbar-brand>
   
     <links>
   
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link waves-light" mdbWavesEffect>Home</a>
+          <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCareHome();">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect (click)="btnClickCrudMed();">CRUD-Medication</a>

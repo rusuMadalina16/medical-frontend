@@ -118,6 +118,11 @@ export class DoctorService {
     return this.httpClient.get<Doctor>(url);
   }
 
+  getPatientsByDoctorId(id: String): Observable<any> {
+    let url: string = `${URLCONST}get-patients/${id}`;
+    return this.httpClient.get<PatientAux[]>(url);
+  }
+
   //PLAN
   addPlan(plan: Plan) : Observable<any>{
     let url: string = `${URLCONST}add-plan`;

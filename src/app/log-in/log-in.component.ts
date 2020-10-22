@@ -27,7 +27,7 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.scrollThing();
+   // this.scrollThing();
     this.userLogIn = {
       username: "",
       password: ""
@@ -39,22 +39,22 @@ export class LogInComponent implements OnInit {
     }
   }
 
-  scrollThing(): void {
-    window.onscroll = function () { myFunction() };
-    var navbar = document.getElementById("navbar");
-    var serviceWrapper = document.getElementById("service-wrapper")
-    var sticky = navbar.offsetTop;
+  // scrollThing(): void {
+  //   window.onscroll = function () { myFunction() };
+  //   var navbar = document.getElementById("navbar");
+  //   var serviceWrapper = document.getElementById("service-wrapper")
+  //   var sticky = navbar.offsetTop;
 
-    function myFunction() {
-      if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky");
-        serviceWrapper.classList.add("service-stick-mode");
-      } else {
-        navbar.classList.remove("sticky");
-        serviceWrapper.classList.remove("service-stick-mode");
-      }
-    }
-  }
+  //   function myFunction() {
+  //     if (window.pageYOffset >= sticky) {
+  //       navbar.classList.add("sticky");
+  //       serviceWrapper.classList.add("service-stick-mode");
+  //     } else {
+  //       navbar.classList.remove("sticky");
+  //       serviceWrapper.classList.remove("service-stick-mode");
+  //     }
+  //   }
+  // }
 
   btnClick(): void {
     this.router.navigateByUrl('/log-in');

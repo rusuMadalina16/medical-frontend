@@ -41,7 +41,6 @@ export class NavigationComponent implements OnInit {
   btnClickCrudMed(): void{
     this.router.navigateByUrl("/doctor/crud-medication");
   }
-
   btnClickCrudPat(): void{
     this.router.navigateByUrl("/doctor/crud-patient");
   }
@@ -53,6 +52,9 @@ export class NavigationComponent implements OnInit {
   }
   btnClickCarePat(): void{
     this.router.navigateByUrl("/doctor/caregiver-patient");
+  }
+  btnClickCareHome(): void{
+    this.router.navigateByUrl("/doctor");
   }
   
   logout(): void {
