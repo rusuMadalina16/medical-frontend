@@ -21,6 +21,7 @@ import { MedicationPlanComponent } from './doctor/medication-plan/medication-pla
 
 import { MaterialModule } from './material.module';
 import { CarePatientComponent } from './doctor/care-patient/care-patient.component';
+import { CaregiverComponent } from './caregiver/caregiver.component';
 
 
 
@@ -34,7 +35,8 @@ import { CarePatientComponent } from './doctor/care-patient/care-patient.compone
     CrudPatientComponent,
     CrudCaregiverComponent,
     MedicationPlanComponent,
-    CarePatientComponent
+    CarePatientComponent,
+    CaregiverComponent
   ],
   imports: [
     BrowserModule,

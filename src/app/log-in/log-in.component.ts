@@ -104,7 +104,7 @@ export class LogInComponent implements OnInit {
     if (this.user.role == 'CAREGIVER') {
       this.doctorService.getCaregiverById(this.user.id).subscribe(
         (res) => {
-          this.doctor = res;
+          this.caregiver = res;
           sessionStorage.clear();
           sessionStorage.setItem('userId', this.user.id);
           sessionStorage.setItem('role', this.user.role);
@@ -113,6 +113,7 @@ export class LogInComponent implements OnInit {
           sessionStorage.setItem('birthDate', this.caregiver.birthDate);
           sessionStorage.setItem('gender', this.caregiver.gender);
           sessionStorage.setItem('address', this.caregiver.address);
+          this.router.navigateByUrl('/caregiver');
         }
       );
     }
