@@ -56,6 +56,10 @@ export class NavigationComponent implements OnInit {
   btnClickCareHome(): void{
     this.router.navigateByUrl("/doctor");
   }
+
+  btnClickCaregiverHome(): void{
+    this.router.navigateByUrl("/caregiver");
+  }
   
   logout(): void {
     sessionStorage.clear();
