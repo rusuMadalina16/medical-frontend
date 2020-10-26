@@ -1,0 +1,31 @@
+<div class="row" id="pat">
+    <div class="col-md-12">
+        <table class="table">
+            <thead class="thead bg-info text-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Side Effects</th>
+                    <th scope="col">Prospect Dosage</th>
+                    <th scope="col">Doctor Dosage</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Stop Date</th>
+                    <th scope="col">Interval intakes</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let pat of planss;let i = index">
+                <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{pat.name}}</td>
+                    <td>{{pat.sideEffects}}</td>
+                    <td>{{pat.prospectDosage}}</td>
+                    <td>{{pat.doctorDosage}}</td>
+                    <td>{{pat.dataStart}}</td>
+                    <td>{{pat.dataStop}}</td>
+                    <td>{{pat.interval}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
