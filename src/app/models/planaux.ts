@@ -6,4 +6,5 @@ export class PlanAux{
     dataStop: string;
     doctorDosage: string;
     idMedication: string;
+    interval: string;
 }
