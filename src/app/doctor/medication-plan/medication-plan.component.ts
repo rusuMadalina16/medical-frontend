@@ -25,6 +25,23 @@ export class MedicationPlanComponent implements OnInit {
   finalFinalPlans: Plan[]=[];
   p: PlanAux;
   pp: Plan;
+  inter: string[] = [
+    "Morning",
+    "Evening",
+    "Noon",
+    "Night",
+    "Morning, Evening",
+    "Morning, Night",
+    "Morning, Noon",
+    "Evening, Night",
+    "Evening, Noon",
+    "Night, Noon",
+    "Morning, Noon, Evening",
+    "Morning, Noon, Night",
+    "Morning, Evening, Night",
+    "Noon, Evening, Night",
+    "Morning, Noon, Evening, Night"
+  ];
 
   finalPatient: Patient;
   finalListMeds: Medication[];
@@ -127,7 +144,8 @@ export class MedicationPlanComponent implements OnInit {
             name: this.medications[0].name,
             doctorDosage: "",
             dataStart: "",
-            dataStop: ""
+            dataStop: "",
+            interval: ""
           };
           this.finalPlans.push(this.p);
 
@@ -140,7 +158,8 @@ export class MedicationPlanComponent implements OnInit {
             name: this.medications[this.medications.length-1].name,
             doctorDosage: "",
             dataStart: "",
-            dataStop: ""
+            dataStop: "",
+            interval: ""
           };
           this.finalPlans.push(this.p);
         }
@@ -167,7 +186,8 @@ export class MedicationPlanComponent implements OnInit {
         dataStop: this.finalPlans[i].dataStop,
         doctorDosage: this.finalPlans[i].doctorDosage,
         idMedication: this.finalPlans[i].idMedication,
-        idPatient: this.finalPatient.id
+        idPatient: this.finalPatient.id,
+        interval: this.finalPlans[i].interval
       };
 
       this.doctorService.addPlan(this.pp).subscribe(
@@ -178,21 +198,20 @@ export class MedicationPlanComponent implements OnInit {
         }
       );
 
-      this.selectedMed={
-        id: "",
-        name: "",
-        dosage: "",
-        sideEffects: ""
-      };
-      this.selectedPatient="";
-      this.selectedFinalPatient=false;
-      this.ffinalPPlans = [];
-      for (i = 0; i < this.finalPlans.length; i++) {
-        this.ffinalPPlans.push(this.finalPlans[i]);
-      }
-      this.finalPlans=[];
-
     }
+    this.selectedMed={
+      id: "",
+      name: "",
+      dosage: "",
+      sideEffects: ""
+    };
+    this.selectedPatient="";
+    this.selectedFinalPatient=false;
+    this.ffinalPPlans = [];
+    for (let i = 0; i < this.finalPlans.length; i++) {
+      this.ffinalPPlans.push(this.finalPlans[i]);
+    }
+    this.finalPlans=[];
 
   }
 

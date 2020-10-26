@@ -3,6 +3,7 @@ export class Plan{
     dataStart: string;
     dataStop: string;
     doctorDosage: string;
+    interval: string;
     idMedication: string;
     idPatient: string;
 }

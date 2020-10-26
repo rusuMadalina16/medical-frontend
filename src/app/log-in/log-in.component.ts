@@ -68,7 +68,7 @@ export class LogInComponent implements OnInit {
     );
 
     if (this.user.role == 'DOCTOR') {
-      this.doctorService.getDoctorById(this.user.id).subscribe(
+      this.doctorService.getDoctorById(this.user.clientId).subscribe(
         (res) => {
           this.doctor = res;
           sessionStorage.clear();
@@ -85,7 +85,7 @@ export class LogInComponent implements OnInit {
     }
 
     if (this.user.role == 'PATIENT') {
-      this.doctorService.getPatientById(this.user.id).subscribe(
+      this.doctorService.getPatientById(this.user.clientId).subscribe(
         (res) => {
           this.patient = res;
           sessionStorage.clear();
@@ -97,12 +97,13 @@ export class LogInComponent implements OnInit {
           sessionStorage.setItem('gender', this.patient.gender);
           sessionStorage.setItem('address', this.patient.address);
           sessionStorage.setItem('medicalRecord', this.patient.medicalRecord);
+          this.router.navigateByUrl('/patient');
         }
       );
     }
 
     if (this.user.role == 'CAREGIVER') {
-      this.doctorService.getCaregiverById(this.user.id).subscribe(
+      this.doctorService.getCaregiverById(this.user.clientId).subscribe(
         (res) => {
           this.caregiver = res;
           sessionStorage.clear();

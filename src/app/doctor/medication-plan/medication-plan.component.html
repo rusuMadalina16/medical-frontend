@@ -82,6 +82,7 @@
                         <th scope="col">Start-date</th>
                         <th scope="col">End-date</th>
                         <th scope="col">Doctor dosage</th>
+                        <th scope="col">Interval intakes</th>
                       </tr>
                     </thead>
                     <tbody *ngFor="let plan of finalPlans;">
@@ -98,6 +99,12 @@
                         </td>
                         <td>
                             <input class="form-control" [(ngModel)]="plan.doctorDosage"/>
+                        </td>
+                        <td>
+                            <select class="form-control" [(ngModel)]="plan.interval" #it="ngModel" required name="gender">
+                                <option *ngFor="let g of inter; index as i" value="{{ g }}">{{ g }}</option>
+                            </select>
+                            <p>{{plan.interval}}</p>
                         </td>
                       </tr>
                       
