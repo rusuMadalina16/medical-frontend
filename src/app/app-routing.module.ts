@@ -8,6 +8,9 @@ import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.compone
 import { DoctorComponent } from './doctor/doctor.component';
 import { MedicationPlanComponent } from './doctor/medication-plan/medication-plan.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { PatientComponent } from './patient/patient.component';
+import { PersonalComponent } from './patient/personal/personal.component';
+import { PlanComponent } from './patient/plan/plan.component';
 
 const routes: Routes = [
   {
@@ -41,6 +44,18 @@ const routes: Routes = [
   {
     path: "caregiver",
     component: CaregiverComponent
+  },
+  {
+    path: "patient",
+    component: PatientComponent
+  },
+  {
+    path: "patient/personal",
+    component: PersonalComponent
+  },
+  {
+    path: "patient/plan",
+    component: PlanComponent
   }
 
 ];
