@@ -27,6 +27,7 @@ import { PersonalComponent } from './patient/personal/personal.component';
 import { PlanComponent } from './patient/plan/plan.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -46,7 +47,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     PersonalComponent,
     PlanComponent,
     ErrorPageComponent,
-    SignUpComponent
+    SignUpComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
