@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -58,10 +59,16 @@ export class MedicationPlanComponent implements OnInit {
   filteredOptions2: Observable<string[]>;
 
   constructor(private doctorService: DoctorService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getAllPatients();
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='DOCTOR'){
+      this.getAllPatients();
     this.getAllMeds();
     this.selectedMed={
       id: "",
@@ -80,7 +87,9 @@ export class MedicationPlanComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this._filter(name) : this.options.slice())
       );
-
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   private _filter(name: string): Medication[] {

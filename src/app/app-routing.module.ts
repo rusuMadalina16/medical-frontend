@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CaregiverComponent } from './caregiver/caregiver.component';
 import { CarePatientComponent } from './doctor/care-patient/care-patient.component';
@@ -7,6 +7,7 @@ import { CrudMedicationComponent } from './doctor/crud-medication/crud-medicatio
 import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { MedicationPlanComponent } from './doctor/medication-plan/medication-plan.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { PatientComponent } from './patient/patient.component';
 import { PersonalComponent } from './patient/personal/personal.component';
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: "patient/plan",
     component: PlanComponent
+  },
+  {
+    path: "404",
+    component: ErrorPageComponent
   }
 
 ];

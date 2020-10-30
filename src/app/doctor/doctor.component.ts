@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Doctor } from '../models/doctor';
 import { PatientAux } from '../models/patientaux';
 import { DoctorService } from '../services/doctor.service';
@@ -13,11 +14,20 @@ export class DoctorComponent implements OnInit {
   doctor: Doctor;
   patients: PatientAux[];
 
-  constructor(private doctorService: DoctorService) { }
+  constructor(private doctorService: DoctorService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getDoctor();
-    this.getPatients();
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='DOCTOR'){
+      this.getDoctor();
+      this.getPatients();
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   getDoctor(): void{

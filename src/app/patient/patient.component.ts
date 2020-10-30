@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PatientAux } from '../models/patientaux';
 import { PatientService } from '../services/patient.service';
 
@@ -10,10 +11,19 @@ import { PatientService } from '../services/patient.service';
 export class PatientComponent implements OnInit {
   patient: PatientAux;
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getPatient();
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='PATIENT'){
+      this.getPatient();
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   getPatient(): void{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Caregiver } from 'src/app/models/caregiver';
 import { Doctor } from 'src/app/models/doctor';
 import { PatientAux } from 'src/app/models/patientaux';
@@ -18,13 +19,21 @@ export class PersonalComponent implements OnInit {
   patient: PatientAux;
 
   constructor(private doctorService: DoctorService,
-    private patientService: PatientService) { }
+    private patientService: PatientService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getDoctor();
-    this.getCaregiver();
+    this.checkLogin();
   }
 
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='PATIENT'){
+      this.getDoctor();
+      this.getCaregiver();
+    }else{
+      this.router.navigateByUrl('/404');
+    }
+  }
 
   getCaregiver(): void{
     this.doctorService.getCaregiverById(sessionStorage.getItem('caregiverId')).subscribe(

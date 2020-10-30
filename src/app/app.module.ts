@@ -25,6 +25,7 @@ import { CaregiverComponent } from './caregiver/caregiver.component';
 import { PatientComponent } from './patient/patient.component';
 import { PersonalComponent } from './patient/personal/personal.component';
 import { PlanComponent } from './patient/plan/plan.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
@@ -42,7 +43,8 @@ import { PlanComponent } from './patient/plan/plan.component';
     CaregiverComponent,
     PatientComponent,
     PersonalComponent,
-    PlanComponent
+    PlanComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

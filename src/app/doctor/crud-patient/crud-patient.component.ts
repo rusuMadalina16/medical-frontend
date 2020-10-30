@@ -33,14 +33,22 @@ export class CrudPatientComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getPatients();
-    this.newCat.id = '';
-    this.newCat.name = '';
-    this.newCat.birthDate = '';
-    this.newCat.gender = '';
-    this.newCat.address = '';
-    this.newCat.medicalRecord = '';
-    this.newCat.doctorId = sessionStorage.getItem('clientId');
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role') == 'DOCTOR'){
+      this.getPatients();
+      this.newCat.id = '';
+      this.newCat.name = '';
+      this.newCat.birthDate = '';
+      this.newCat.gender = '';
+      this.newCat.address = '';
+      this.newCat.medicalRecord = '';
+      this.newCat.doctorId = sessionStorage.getItem('clientId');
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   openModalWithClass(template: TemplateRef<any>) {  

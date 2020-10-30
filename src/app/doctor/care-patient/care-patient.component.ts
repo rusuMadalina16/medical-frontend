@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -41,29 +42,37 @@ export class CarePatientComponent implements OnInit {
   filteredOptions2: Observable<string[]>;
 
   constructor(private doctorService: DoctorService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getAllPatients();
-    this.getAllCaregivers();
-    this.selectedCare={
-      id: "",
-      name: "",
-      birthDate: "",
-      gender: "",
-      address: ""
-    };
-    this.selectedPatient="";
-    this.filteredOptions2 = this.myControl2.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter2(value))
-    );
+    this.checkLogin();
+  }
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
-
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='DOCTOR'){
+      this.getAllPatients();
+      this.getAllCaregivers();
+      this.selectedCare={
+        id: "",
+        name: "",
+        birthDate: "",
+        gender: "",
+        address: ""
+      };
+      this.selectedPatient="";
+      this.filteredOptions2 = this.myControl2.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter2(value))
+      );
+  
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   private _filter(name: string): string[] {

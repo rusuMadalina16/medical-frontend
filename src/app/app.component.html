@@ -1,2 +1,11 @@
-<app-navigation></app-navigation>
-<router-outlet></router-outlet>          
+<section [class.landingPage]="this.router.url !== '/404'">
+    <div class="header" *ngIf="this.router.url !== '/404'">
+
+        <app-navigation></app-navigation>
+
+    </div>
+    <div [class.div]="this.router.url !== '/404'">
+        <router-outlet></router-outlet>
+    </div>
+
+</section>
