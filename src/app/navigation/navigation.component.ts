@@ -10,71 +10,71 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  userType:string = "none";
+  userType: string = "none";
   location: string;
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.checkDoc();
   }
 
-  checkDoc(): void{
+  checkDoc(): void {
     this.router.events.subscribe((params) => {
-      sessionStorage.setItem("navBar",sessionStorage.getItem("role"));
+      sessionStorage.setItem("navBar", sessionStorage.getItem("role"));
       this.userType = sessionStorage.getItem("navBar");
     })
     this.userType = sessionStorage.getItem("navBar");
-    if(sessionStorage.getItem("navBar") == "null"){
+    if (sessionStorage.getItem("navBar") == "null") {
       this.router.navigateByUrl("");
     }
 
-    this.location=this.router.url;
+    this.location = this.router.url;
 
     console.log(this.userType);
   }
 
-  btnClick(): void{
+  btnClick(): void {
     this.router.navigateByUrl("/log-in");
   }
 
-  btnClickCrudMed(): void{
+  btnClickCrudMed(): void {
     this.router.navigateByUrl("/doctor/crud-medication");
   }
-  btnClickCrudPat(): void{
+  btnClickCrudPat(): void {
     this.router.navigateByUrl("/doctor/crud-patient");
   }
-  btnClickCrudCar(): void{
+  btnClickCrudCar(): void {
     this.router.navigateByUrl("/doctor/crud-caregiver");
   }
-  btnClickPlanMed(): void{
+  btnClickPlanMed(): void {
     this.router.navigateByUrl("/doctor/plan-medication");
   }
-  btnClickCarePat(): void{
+  btnClickCarePat(): void {
     this.router.navigateByUrl("/doctor/caregiver-patient");
   }
-  btnClickCareHome(): void{
+  btnClickCareHome(): void {
     this.router.navigateByUrl("/doctor");
   }
 
-  btnClickCaregiverHome(): void{
+  btnClickCaregiverHome(): void {
     this.router.navigateByUrl("/caregiver");
   }
 
-  btnClickPatientHome(): void{
+  btnClickPatientHome(): void {
     this.router.navigateByUrl("/patient");
   }
-  btnClickPatientPersonal(): void{
+  btnClickPatientPersonal(): void {
     this.router.navigateByUrl("/patient/personal");
   }
-  btnClickPatientPlan(): void{
+  btnClickPatientPlan(): void {
     this.router.navigateByUrl("/patient/plan");
   }
 
-  btnSignUp(): void{
+  btnSignUp(): void {
     this.router.navigateByUrl("/sign-up");
   }
-  
+
   logout(): void {
     sessionStorage.clear();
     this.router.navigateByUrl("");
