@@ -79,6 +79,10 @@ export class NavigationComponent implements OnInit {
     this.router.navigateByUrl("/home");
   }
 
+  btnContact(): void {
+    this.router.navigateByUrl("/contact");
+  }
+
   logout(): void {
     sessionStorage.clear();
     this.router.navigateByUrl("");
