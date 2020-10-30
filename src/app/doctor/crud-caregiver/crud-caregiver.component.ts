@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Caregiver } from 'src/app/models/caregiver';
+import { UserLogIn } from 'src/app/models/userLogIn';
 import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class CrudCaregiverComponent implements OnInit {
   caregivers: Caregiver[];
 
   genders: string[] = ["Female","Male","Other"];
+  loginDto: UserLogIn;
 
   editingCat: Caregiver;
   deleteCat: Caregiver;
@@ -51,6 +53,17 @@ export class CrudCaregiverComponent implements OnInit {
 
   openModalWithClass(template: TemplateRef<any>) {  
     this.modalRef = this.modalService.show(template);  
+  }
+
+  openModalAccount(template: TemplateRef<any>, cat: Caregiver) {
+
+    this.doctorService.getCaregiverAccount(cat.id).subscribe(
+      (res) => {
+        this.loginDto=res;
+      }
+    )
+
+    this.modalRef = this.modalService.show(template);
   }
 
   openModalEdit(template: TemplateRef<any>, cat: Caregiver) {

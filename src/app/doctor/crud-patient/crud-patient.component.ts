@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Patient } from 'src/app/models/patient';
 import { PatientAux } from 'src/app/models/patientaux';
+import { UserLogIn } from 'src/app/models/userLogIn';
 import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class CrudPatientComponent implements OnInit {
   patients: PatientAux[];
 
   genders: string[] = ["Female","Male","Other"];
+  loginDto: UserLogIn;
 
   editingCat: PatientAux;
   deleteCat: Patient;
@@ -67,6 +69,17 @@ export class CrudPatientComponent implements OnInit {
       doctorId: sessionStorage.getItem('clientId'),
       caregiverId: cat.caregiverId
     };
+    this.modalRef = this.modalService.show(template);
+  }
+
+  openModalAccount(template: TemplateRef<any>, cat: PatientAux) {
+
+    this.doctorService.getPatientAccount(cat.id).subscribe(
+      (res) => {
+        this.loginDto=res;
+      }
+    )
+
     this.modalRef = this.modalService.show(template);
   }
 

@@ -7,6 +7,7 @@ import { Medication } from '../models/medication';
 import { Patient } from '../models/patient';
 import { Plan } from '../models/plan';
 import { PatientAux } from '../models/patientaux';
+import { UserLogIn } from '../models/userLogIn';
 
 const URLCONST: string = "http://localhost:8080/doctor/";
 
@@ -127,5 +128,15 @@ export class DoctorService {
   addPlan(plan: Plan) : Observable<any>{
     let url: string = `${URLCONST}add-plan`;
     return this.httpClient.post<any>(url, plan);
+  }
+
+  getPatientAccount(id: String): Observable<any> {
+    let url: string = `${URLCONST}get-patient-details/${id}`;
+    return this.httpClient.get<UserLogIn>(url);
+  }
+
+  getCaregiverAccount(id: String): Observable<any> {
+    let url: string = `${URLCONST}get-caregiver-details/${id}`;
+    return this.httpClient.get<UserLogIn>(url);
   }
 }
