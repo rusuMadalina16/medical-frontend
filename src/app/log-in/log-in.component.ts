@@ -60,6 +60,10 @@ export class LogInComponent implements OnInit {
     this.router.navigateByUrl('/log-in');
   };
 
+  btnSignUp(): void {
+    this.router.navigateByUrl('/sign-up');
+  };
+
   getUser(): void {
     this.loginService.logIn(this.userLogIn.username,this.userLogIn.password).subscribe(
       (res) => {

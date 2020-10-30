@@ -70,6 +70,10 @@ export class NavigationComponent implements OnInit {
   btnClickPatientPlan(): void{
     this.router.navigateByUrl("/patient/plan");
   }
+
+  btnSignUp(): void{
+    this.router.navigateByUrl("/sign-up");
+  }
   
   logout(): void {
     sessionStorage.clear();

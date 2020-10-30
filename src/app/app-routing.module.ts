@@ -12,6 +12,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { PatientComponent } from './patient/patient.component';
 import { PersonalComponent } from './patient/personal/personal.component';
 import { PlanComponent } from './patient/plan/plan.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,11 @@ const routes: Routes = [
   {
     path: "404",
     component: ErrorPageComponent
+  }
+  ,
+  {
+    path: "sign-up",
+    component: SignUpComponent
   }
 
 ];
