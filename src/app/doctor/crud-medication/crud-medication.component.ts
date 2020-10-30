@@ -29,10 +29,18 @@ export class CrudMedicationComponent implements OnInit {
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.getMedications();
-    this.newCat.id = '';
-    this.newCat.sideEffects = '';
-    this.newCat.dosage = '';
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='DOCTOR'){
+      this.getMedications();
+      this.newCat.id = '';
+      this.newCat.sideEffects = '';
+      this.newCat.dosage = '';
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   openModalWithClass(template: TemplateRef<any>) {  

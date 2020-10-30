@@ -1,6 +1,7 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FullDetailPlan } from 'src/app/models/fulldetailplan';
-import { DoctorService } from 'src/app/services/doctor.service';
 import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
@@ -11,10 +12,19 @@ import { PatientService } from 'src/app/services/patient.service';
 export class PlanComponent implements OnInit {
   planss: FullDetailPlan[];
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getPlans();
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='PATIENT'){
+      this.getPlans();
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   getPlans(): void{

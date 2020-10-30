@@ -33,12 +33,20 @@ export class CrudCaregiverComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCaregivers();
-    this.newCat.id = '';
-    this.newCat.name = '';
-    this.newCat.birthDate = '';
-    this.newCat.gender = '';
-    this.newCat.address = '';
+    this.checkLogin();
+  }
+
+  checkLogin(): void{
+    if (sessionStorage.getItem('role')=='DOCTOR'){
+      this.getCaregivers();
+      this.newCat.id = '';
+      this.newCat.name = '';
+      this.newCat.birthDate = '';
+      this.newCat.gender = '';
+      this.newCat.address = '';
+    }else{
+      this.router.navigateByUrl('/404');
+    }
   }
 
   openModalWithClass(template: TemplateRef<any>) {  
