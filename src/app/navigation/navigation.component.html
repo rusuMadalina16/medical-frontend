@@ -1,17 +1,21 @@
 <div class="header">
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
+    <h1><strong>Medical</strong></h1>
+    
+    <blockquote class="blockquote mb-0">
+      <p>“Isn’t it a bit unnerving that doctors call what they do “practice”?”</p>
+      <footer class="blockquote-footer"><cite title="Source Title">George Carlin</cite></footer>
+    </blockquote>
   </div>
   
   <mdb-navbar *ngIf = "userType !== 'DOCTOR' && userType !== 'CAREGIVER' && userType !== 'PATIENT'" SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false" id="navbar" >
 
-    <mdb-navbar-brand><a class="navbar-brand text-light" >Medical</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand text-light" (click)="btnHome();">Medical</a></mdb-navbar-brand>
   
     <links>
   
       <ul class="navbar-nav mr-auto" id="myDIV">
         <li class="nav-item active">
-          <a class="nav-link waves-light" mdbWavesEffect>Home</a>
+          <a class="nav-link waves-light" mdbWavesEffect (click)="btnHome();">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect>Features</a>

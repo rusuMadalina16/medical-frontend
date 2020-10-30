@@ -28,6 +28,7 @@ import { PlanComponent } from './patient/plan/plan.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -48,7 +49,8 @@ import { FooterComponent } from './footer/footer.component';
     PlanComponent,
     ErrorPageComponent,
     SignUpComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
