@@ -8,6 +8,7 @@ import { CrudPatientComponent } from './doctor/crud-patient/crud-patient.compone
 import { DoctorComponent } from './doctor/doctor.component';
 import { MedicationPlanComponent } from './doctor/medication-plan/medication-plan.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { HomeComponent } from './home/home.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { PatientComponent } from './patient/patient.component';
 import { PersonalComponent } from './patient/personal/personal.component';
@@ -62,11 +63,18 @@ const routes: Routes = [
   {
     path: "404",
     component: ErrorPageComponent
-  }
-  ,
+  },
   {
     path: "sign-up",
     component: SignUpComponent
+  },
+  {
+    path: "home",
+    component: HomeComponent
+  },
+  {
+    path: "",
+    component: HomeComponent
   }
 
 ];
